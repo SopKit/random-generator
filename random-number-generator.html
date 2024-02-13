@@ -1,305 +1,369 @@
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-      <link rel="apple-touch-icon" type="image/png" href="https://cpwebassets.codepen.io/assets/favicon/apple-touch-icon-5ae1a0698dcc2402e9712f7d01ed509a57814f994c660df9f7a952f3060705ee.png">
-  
-      <meta name="apple-mobile-web-app-title" content="CodePen">
-  
-      <link rel="shortcut icon" type="image/x-icon" href="https://cpwebassets.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico">
-  
-      <link rel="mask-icon" type="image/x-icon" href="https://cpwebassets.codepen.io/assets/favicon/logo-pin-b4b4269c16397ad2f0f7a01bcdf513a1994f4c94b8af2f191c09eb0d601762b1.svg" color="#111">  
-  
-    <title>SopKit - JavaScript Random Numbers Generator</title>
-  
-    <link href="https://fonts.googleapis.com/css?family=Sahitya:400,700" rel="stylesheet">
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-    
-    
-    
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SopKit - Random Number Generator Toolkit</title>
+  <meta name="description"
+    content="SopKit offers a wide range of free online tools for web developers, including JSON Prettify, HTML Minify, Random Data generators, and more." />
+  <meta name="keywords" content="SopKit, web development tools, JSON Prettify, HTML Minify, Random Data, SEO" />
+  <meta name="author" content="Your Name" />
+  <meta name="robots" content="index, follow" />
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://sopkit.github.io" />
+  <meta property="og:title" content="SopKit - Your Web Development Toolkit" />
+  <meta property="og:description"
+    content="SopKit offers a wide range of free online tools for web developers, including JSON Prettify, HTML Minify, Random Data generators, and more." />
+  <meta property="og:image" content="https://sopkit.github.io/logo.png" />
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:url" content="https://sopkit.github.io" />
+  <meta property="twitter:title" content="SopKit - Your Web Development Toolkit" />
+  <meta property="twitter:description"
+    content="SopKit offers a wide range of free online tools for web developers, including JSON Prettify, HTML Minify, Random Data generators, and more." />
+  <meta property="twitter:image" content="https://sopkit.github.io/logo.png" />
+
+  <!-- Canonical link -->
+  <link rel="canonical" href="https://sopkit.github.io" />
+
+  <!-- Google Site Verification -->
+  <meta name="google-site-verification" content="jVnnQmk7BTqhmyT3_399XOsjFzZN8wllSg9DQCtbngI" />
+
+  <!-- Bing Site Verification -->
+  <meta name="msvalidate.01" content="" />
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-E9Q2600LW2"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag("js", new Date());
+
+    gtag("config", "G-E9Q2600LW2");
+  </script>
   <style>
-  * {
-    box-sizing: border-box;
-  }
-  
-  body {
-    background: #f6ffec;
-    margin: 0;
-    font-family: Sahitya;
-    font-size: calc(.8rem + 1vw);
-    color: #53565a;
-  }
-  body section {
-    display: flex;
-    justify-content: flex-start;
-    flex-wrap: wrap;
-    position: relative;
-    width: 100%;
-    max-width: 24em;
-    min-height: 100vh;
-    margin: auto;
-    padding: 1em;
-    align-items: center;
-    align-content: center;
-  }
-  body section h1 {
-    font-size: 1.8em;
-    margin: 0;
-    line-height: 0.9;
-  }
-  body section h4 {
-    font-size: 0.7em;
-    font-weight: normal;
-    margin: 0.5em 0 32px;
-  }
-  body section .group, body section .boxgroup {
-    display: flex;
-    justify-content: flex-start;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    width: 100%;
-    flex-wrap: wrap;
-    margin-bottom: 1em;
-  }
-  body section .group label, body section .boxgroup label {
-    flex: 1 0 auto;
-    line-height: 2;
-    position: relative;
-    top: 0em;
-    border-bottom: 1px solid #53565a;
-  }
-  body section .group input, body section .boxgroup input {
-    flex: 10 0 auto;
-    padding: 0 0 0.1em 0.5em;
-    font-family: Sahitya;
-    font-size: 22px;
-    border: none;
-    border-bottom: 1px solid #53565a;
-    background: none;
-    margin: 0;
-    text-align: right;
-  }
-  body section .group input:focus, body section .boxgroup input:focus {
-    outline: none;
-  }
-  body section .boxgroup {
-    width: 100%;
-    justify-content: flex-start;
-  }
-  body section .boxgroup label {
-    text-align: left;
-    flex: 10 0 auto;
-    padding-left: 1.2em;
-  }
-  body section .boxgroup label:before {
-    content: "";
-    font-size: 120%;
-    line-height: 0.5em;
-    width: 0.6em;
-    text-indent: 0.075em;
-    height: 0.6em;
-    border: 1px solid #53565a;
-    position: absolute;
-    left: 0;
-    bottom: 0.5em;
-  }
-  body section .boxgroup label.checked {
-    font-weight: bold;
-  }
-  body section .boxgroup label.checked:before {
-    content: "x";
-  }
-  body section .boxgroup input {
-    width: auto;
-    flex: 1 0 auto;
-    margin: 0.32em 0.4em 0 0;
-    border-bottom: 1px solid black !important;
-    display: none;
-  }
-  body section button {
-    font-family: Sahitya;
-    padding: 0.5em 1em;
-    font-size: 18px;
-    margin-top: 32px;
-    background: #53565a;
-    border: 1px solid #53565a;
-    color: #fff;
-    cursor: pointer;
-    transition: all 0.2s ease-in-out;
-  }
-  body section button:hover {
-    background: #a7a8aa;
-    transform: scale(1.1);
-  }
-  body section button:focus {
-    outline: none;
-    background: #ffd100;
-    color: #53565a;
-  }
-  body section #result {
-    width: 100%;
-    height: 1em;
-    line-height: 1em;
-    font-size: 36px;
-    text-align: left;
-    margin-top: 0.5em;
-  }
-  body section #result .error {
-    color: red;
-    font-size: 40%;
-    line-height: 0.4em;
-    animate: bounce 0.5s ease-in-out forward;
-  }
-  
-  @-webkit-keyframes bounce {
-    0% {
-      transform: translateY(-0.25em);
+    * {
+      box-sizing: border-box;
     }
-    25% {
-      transform: translateY(0);
+
+    body {
+      background: #f6ffec;
+      margin: 0;
+      font-family: Sahitya;
+      font-size: calc(.8rem + 1vw);
+      color: #53565a;
     }
-    50% {
-      transform: translateY(-0.25em);
-    }
-    75% {
-      transform: translateY(0);
-    }
-  }
-  
-  @keyframes bounce {
-    0% {
-      transform: translateY(-0.25em);
-    }
-    25% {
-      transform: translateY(0);
-    }
-    50% {
-      transform: translateY(-0.25em);
-    }
-    75% {
-      transform: translateY(0);
-    }
-  }
-  @media (max-width: 600px) {
-    body section .group label, body section .boxgroup label {
+
+    body section {
+      display: flex;
+      justify-content: flex-start;
+      flex-wrap: wrap;
+      position: relative;
       width: 100%;
+      max-width: 24em;
+      min-height: 100vh;
+      margin: auto;
+      padding: 1em;
+      align-items: center;
+      align-content: center;
+    }
+
+    body section h1 {
+      font-size: 1.8em;
+      margin: 0;
+      line-height: 0.9;
+    }
+
+    body section h4 {
+      font-size: 0.7em;
+      font-weight: normal;
+      margin: 0.5em 0 32px;
+    }
+
+    body section .group,
+    body section .boxgroup {
+      display: flex;
+      justify-content: flex-start;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      width: 100%;
+      flex-wrap: wrap;
+      margin-bottom: 1em;
+    }
+
+    body section .group label,
+    body section .boxgroup label {
+      flex: 1 0 auto;
+      line-height: 2;
+      position: relative;
+      top: 0em;
+      border-bottom: 1px solid #53565a;
+    }
+
+    body section .group input,
+    body section .boxgroup input {
+      flex: 10 0 auto;
+      padding: 0 0 0.1em 0.5em;
+      font-family: Sahitya;
+      font-size: 22px;
       border: none;
+      border-bottom: 1px solid #53565a;
+      background: none;
+      margin: 0;
+      text-align: right;
     }
-  
-    body section .group input {
+
+    body section .group input:focus,
+    body section .boxgroup input:focus {
+      outline: none;
+    }
+
+    body section .boxgroup {
+      width: 100%;
+      justify-content: flex-start;
+    }
+
+    body section .boxgroup label {
       text-align: left;
+      flex: 10 0 auto;
+      padding-left: 1.2em;
     }
-  }
+
+    body section .boxgroup label:before {
+      content: "";
+      font-size: 120%;
+      line-height: 0.5em;
+      width: 0.6em;
+      text-indent: 0.075em;
+      height: 0.6em;
+      border: 1px solid #53565a;
+      position: absolute;
+      left: 0;
+      bottom: 0.5em;
+    }
+
+    body section .boxgroup label.checked {
+      font-weight: bold;
+    }
+
+    body section .boxgroup label.checked:before {
+      content: "x";
+    }
+
+    body section .boxgroup input {
+      width: auto;
+      flex: 1 0 auto;
+      margin: 0.32em 0.4em 0 0;
+      border-bottom: 1px solid black !important;
+      display: none;
+    }
+
+    body section button {
+      font-family: Sahitya;
+      padding: 0.5em 1em;
+      font-size: 18px;
+      margin-top: 32px;
+      background: #53565a;
+      border: 1px solid #53565a;
+      color: #fff;
+      cursor: pointer;
+      transition: all 0.2s ease-in-out;
+    }
+
+    body section button:hover {
+      background: #a7a8aa;
+      transform: scale(1.1);
+    }
+
+    body section button:focus {
+      outline: none;
+      background: #ffd100;
+      color: #53565a;
+    }
+
+    body section #result {
+      width: 100%;
+      height: 1em;
+      line-height: 1em;
+      font-size: 36px;
+      text-align: left;
+      margin-top: 0.5em;
+    }
+
+    body section #result .error {
+      color: red;
+      font-size: 40%;
+      line-height: 0.4em;
+      animate: bounce 0.5s ease-in-out forward;
+    }
+
+    @-webkit-keyframes bounce {
+      0% {
+        transform: translateY(-0.25em);
+      }
+
+      25% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-0.25em);
+      }
+
+      75% {
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes bounce {
+      0% {
+        transform: translateY(-0.25em);
+      }
+
+      25% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-0.25em);
+      }
+
+      75% {
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 600px) {
+
+      body section .group label,
+      body section .boxgroup label {
+        width: 100%;
+        border: none;
+      }
+
+      body section .group input {
+        text-align: left;
+      }
+    }
   </style>
-    
-    
-  </head>
-  
-  <body >
-    <section>
-      <h1>Random numbers generator</h1>
-      <h4>Generate any number of random values with or without repeats</h4>
-      <div class="group">
-          <label for="minimum">Minimum:</label>
-          <input value="1" type="number" step="1" id="minimum">
-      </div>
-      <div class="group">
-          <label for="maximum">Maximum:</label>
-          <input value="100" type="number" step="1" id="maximum">
-      </div>
-      <div class="group">
-          <label for="resultcount">How many results?</label>
-          <input value="1" type="number" min="1" step="1" id="resultcount" placeholder="1">
-      </div>
-      <div class="boxgroup">
-          <input type="checkbox" id="norepeat">
-          <label for="norepeat">No repeat results</label>
-      </div>
-      <div class="boxgroup">
-          <input type="checkbox" id="sort">
-          <label for="sort">Order results numerically</label>
-      </div>
-      <button onclick="crunch()">Generate</button>
-          <div id="result"><span class="error">Please choose a valid range.</span></div>
+  <link rel="stylesheet" href="/style.css" />
+  <link rel="shortcut icon" href="logo.png" type="image/x-icon" />
+</head>
+
+<body>
+  <section>
+    <h1>Random numbers generator</h1>
+    <h4>Generate any number of random values with or without repeats</h4>
+    <div class="group">
+      <label for="minimum">Minimum:</label>
+      <input value="1" type="number" step="1" id="minimum" />
+    </div>
+    <div class="group">
+      <label for="maximum">Maximum:</label>
+      <input value="100" type="number" step="1" id="maximum" />
+    </div>
+    <div class="group">
+      <label for="resultcount">How many results?</label>
+      <input value="1" type="number" min="1" step="1" id="resultcount" placeholder="1" />
+    </div>
+    <div class="boxgroup">
+      <input type="checkbox" id="norepeat" />
+      <label for="norepeat">No repeat results</label>
+    </div>
+    <div class="boxgroup">
+      <input type="checkbox" id="sort" />
+      <label for="sort">Order results numerically</label>
+    </div>
+    <button onclick="crunch()">Generate</button>
+    <div id="result">
+      <span class="error">Please choose a valid range.</span>
+    </div>
   </section>
-    
-        <script id="rendered-js">
-  var resultArea = document.querySelector('#result');
-  var noRepeatBox = document.querySelector('#norepeat');
-  var sortBox = document.querySelector('#sort');
-  
-  var noRepeatLabel = document.querySelector('label[for=norepeat]');
-  var sortLabel = document.querySelector('label[for=sort]');
-  
-  
-  noRepeatBox.addEventListener('click', function () {
-    noRepeatLabel.classList.toggle('checked');
-  });
-  
-  sortBox.addEventListener('click', function () {
-    sortLabel.classList.toggle('checked');
-  });
-  
-  function crunch() {
-    var noRepeat = document.querySelector('#norepeat').checked;
-    var sort = document.querySelector('#sort').checked;
-    var min = Number(document.querySelector('#minimum').value);
-    //console.log(min);
-    var max = Number(document.querySelector('#maximum').value);
-    //console.log(max);
-    var resultCount = Number(document.querySelector('#resultcount').value);
-    var resultsArray = [];
-  
-    resultArea.innerHTML = '';
-  
-    if (max - min == 0) {
-      resultArea.innerHTML = '<span class="error">Please choose a valid range.</span>';
-      return;
-    } else if (max < min) {
-      resultArea.innerHTML = '<span class="error">Invalid number range</span>';
-      return;
-    } else if (noRepeat && resultCount > max - min + 1) {
-      resultArea.innerHTML = '<span class="error">Range is too small to generate only unique numbers</span>';
-      return;
-    }
-    if (!resultCount) {
-      resultCount = 1;
-    }
-  
-    function newNumber() {
-      if (min == 0) {
-        var result = Math.floor(Math.random() * (max + 1));
-      } else if (min < 0 && max >= 0) {
-        var result = Math.ceil(Math.random() * (min - 1)) + Math.floor(Math.random() * (max + 1));
-      } else if (min < 0 && max < 0) {
-        var result = Math.ceil(Math.random() * (min - 1)) + max;
-      } else {
-        var result = Math.floor(Math.random() * max + 1);
+
+  <script id="rendered-js">
+    var resultArea = document.querySelector("#result");
+    var noRepeatBox = document.querySelector("#norepeat");
+    var sortBox = document.querySelector("#sort");
+
+    var noRepeatLabel = document.querySelector("label[for=norepeat]");
+    var sortLabel = document.querySelector("label[for=sort]");
+
+    noRepeatBox.addEventListener("click", function () {
+      noRepeatLabel.classList.toggle("checked");
+    });
+
+    sortBox.addEventListener("click", function () {
+      sortLabel.classList.toggle("checked");
+    });
+
+    function crunch() {
+      var noRepeat = document.querySelector("#norepeat").checked;
+      var sort = document.querySelector("#sort").checked;
+      var min = Number(document.querySelector("#minimum").value);
+      //console.log(min);
+      var max = Number(document.querySelector("#maximum").value);
+      //console.log(max);
+      var resultCount = Number(document.querySelector("#resultcount").value);
+      var resultsArray = [];
+
+      resultArea.innerHTML = "";
+
+      if (max - min == 0) {
+        resultArea.innerHTML =
+          '<span class="error">Please choose a valid range.</span>';
+        return;
+      } else if (max < min) {
+        resultArea.innerHTML =
+          '<span class="error">Invalid number range</span>';
+        return;
+      } else if (noRepeat && resultCount > max - min + 1) {
+        resultArea.innerHTML =
+          '<span class="error">Range is too small to generate only unique numbers</span>';
+        return;
       }
-      if (result < min || noRepeat && resultsArray.includes(result)) {
-        return newNumber();
+      if (!resultCount) {
+        resultCount = 1;
       }
-      //console.log(result);
-      resultsArray.push(result);
+
+      function newNumber() {
+        if (min == 0) {
+          var result = Math.floor(Math.random() * (max + 1));
+        } else if (min < 0 && max >= 0) {
+          var result =
+            Math.ceil(Math.random() * (min - 1)) +
+            Math.floor(Math.random() * (max + 1));
+        } else if (min < 0 && max < 0) {
+          var result = Math.ceil(Math.random() * (min - 1)) + max;
+        } else {
+          var result = Math.floor(Math.random() * max + 1);
+        }
+        if (result < min || (noRepeat && resultsArray.includes(result))) {
+          return newNumber();
+        }
+        //console.log(result);
+        resultsArray.push(result);
+      }
+
+      for (i = 1; i <= resultCount; i++) {
+        if (window.CP.shouldStopExecution(0)) break;
+        newNumber();
+      }
+      window.CP.exitedLoop(0);
+      console.log(resultsArray);
+      if (sort) {
+        resultsArray == resultsArray.sort((a, b) => a - b);
+      }
+      resultArea.innerHTML += resultsArray.join(", ");
     }
-  
-    for (i = 1; i <= resultCount; i++) {if (window.CP.shouldStopExecution(0)) break;
-      newNumber();
-    }window.CP.exitedLoop(0);
-    console.log(resultsArray);
-    if (sort) {
-      resultsArray == resultsArray.sort((a, b) => a - b);
-    }
-    resultArea.innerHTML += resultsArray.join(', ');
-  }
-  //# sourceURL=pen.js
-  // https://codepen.io/collinsworth/pen/ygGppK
-      </script>
-  
-    
-  
-  
-  
-  </body>
-  
-  </html>
+    //# sourceURL=pen.js
+    // https://codepen.io/collinsworth/pen/ygGppK
+  </script>
+</body>
+
+</html>
